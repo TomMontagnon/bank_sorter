@@ -2,15 +2,15 @@
 from pathlib import Path
 import pandas as pd
 import re
-import sys
 
 SUFFIX = "_cat"
 CATEG_FILE_NAME = "categories.csv"
+DATA_REP = "bank_data/"
+CATEG_FILE_NAME = "categories.csv"
 
-
-def lister_et_choisir_txt(dossier : str =".") -> Path:
+def lister_et_choisir_txt() -> Path:
     # 1) convertir en Path
-    p = Path(dossier)
+    p = Path(DATA_REP)
 
     # 2) lister tous les .txt du dossier (non-récursif)
     fichiers = sorted([f for f in p.iterdir() if f.is_file()])
@@ -74,7 +74,7 @@ def write_categ_csv(
     df2.to_csv(path, index=False, sep=sep, encoding=encoding)
 
 
-def txt_to_df(name : str) -> pd.DataFrame:
+def txt_to_df(name: str) -> pd.DataFrame:
     # Load the file content
     file_path = Path(name)
     with Path.open(file_path, encoding="utf-8") as f:
@@ -159,9 +159,8 @@ def csv_to_df(name):
 
 def main():
     # on peut passer le dossier en argument, sinon on prend le dossier courant
-    dossier = sys.argv[1] if len(sys.argv) > 1 else "data"
     while True:
-        fic = lister_et_choisir_txt(dossier)
+        fic = lister_et_choisir_txt()
         sfic = str(fic)
         if sfic.endswith(".txt"):
             df = txt_to_df(fic)
