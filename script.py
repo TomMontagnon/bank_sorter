@@ -143,21 +143,21 @@ def print_status(overview: dict, progress_col_name: str = "progress") -> None:
         ordered.append(progress_col_name)
     ordered += [c for c in df_overview.columns if c not in ordered]
 
-    print(df_overview[ordered].to_string(index=False))
+    print(df_overview[ordered].to_string(index=True))
 
 
 def my_menu(overview: dict) -> int:
     print_status(overview)
 
     while True:
-        choix = input("Entrez le numéro (1-12) ou 'q' pour quitter : ")
+        choix = input("Entrez le numéro (0-11) ou 'q' pour quitter : ")
         if choix.lower() == "q":
             print("Abandon.")
             return None
         if choix.isdigit():
             n = int(choix)
-            if 1 <= n <= 12:
-                val = list(overview.keys())[n - 1]
+            if 0 <= n <= 11:
+                val = list(overview.keys())[n]
                 print("Vous avez choisi :", val)
                 return val
         print("Choix invalide, réessayez.")
