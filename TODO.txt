@@ -1,0 +1,9 @@
+================== TODO COMPTES
+
+revenus uniquement positif (attention caf)
+
+virer doublon colonne prix_str et montant
+
+virer doublon colonne passage par CSV avec Izly et (...)
+
+
